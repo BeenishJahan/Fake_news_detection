@@ -26,7 +26,7 @@ A binary classification model that predicts whether a news article is **Real** o
 
 **5. Model Training** — Logistic Regression trained on TF-IDF vectors.
 
-**6. Evaluation** — Assessed using accuracy, confusion matrix, and classification report.
+**6. Evaluation** — Assessed using accuracy, confusion matrix, classification report, and 5-fold cross validation.
 
 ---
 
@@ -34,12 +34,16 @@ A binary classification model that predicts whether a news article is **Real** o
 
 | Metric | Score |
 |--------|-------|
-| Accuracy | 98.43% |
+| Accuracy (single split) | 98.43% |
+| Mean Accuracy (5-fold CV) | 98.65% |
+| Standard Deviation (CV) | 0.0014 |
 | Precision (Fake) | 0.99 |
 | Precision (Real) | 0.98 |
 | Recall (Fake) | 0.98 |
 | Recall (Real) | 0.99 |
 | F1-Score (Both) | 0.98 |
+
+The extremely low standard deviation across 5 folds confirms the model performs consistently and the results are not dependent on a lucky data split.
 
 212 mistakes out of 13,470 test articles.
 
@@ -47,10 +51,10 @@ A binary classification model that predicts whether a news article is **Real** o
 
 ## Limitations
 
-- Trained on 2016–2017 US political news — may not generalize to other domains or time periods.
-- The model learned writing style, not truth. A well-written fake article could fool it.
-- TF-IDF has no understanding of context or meaning — more advanced models like BERT would perform better in production.
-- Dramatic but real events can be misclassified as fake due to sensational language.
+- **Dataset scope** — trained on 2016–2017 US political news. May not generalize to other domains or time periods.
+- **Style over substance** — the model learned writing style, not truth. A well-written fake article could fool it.
+- **No contextual understanding** — TF-IDF only counts word frequencies with no understanding of meaning or context. More advanced models like BERT would perform better in production.
+- **Sensational real news** — dramatic but factual events can be misclassified as fake due to sensational language.
 
 ---
 
